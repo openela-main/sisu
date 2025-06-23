@@ -5,7 +5,7 @@
 Name:           sisu
 Epoch:          1
 Version:        0.3.3
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Eclipse dependency injection framework
 # sisu is EPL-1.0
 # bundled asm is BSD
@@ -50,6 +50,7 @@ style dependency injection.
 %package        inject
 Summary:        Sisu inject
 Obsoletes:      %{name}-tests < 1:0.3.2-5
+Provides:       bundled(objectweb-asm)
 
 %description    inject
 This package contains %{summary}.
@@ -62,6 +63,7 @@ This package contains %{summary}.
 
 %package        javadoc
 Summary:        API documentation for Sisu
+Provides:       bundled(objectweb-asm)
 
 %description    javadoc
 This package contains %{summary}.
@@ -102,6 +104,9 @@ cp %{SOURCE102} sisu-plexus/pom.xml
 
 
 %changelog
+* Wed Jan 22 2020 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.3.3-7
+- Add bundled provides to sisu-inject and sisu-javadoc
+
 * Tue Jul 24 2018 Michael Simacek <msimacek@redhat.com> - 1:0.3.3-6
 - Declare bundled objectweb-asm
 - Fix license tag to include BSD for asm
