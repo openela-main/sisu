@@ -3,7 +3,7 @@
 Name:           sisu
 Epoch:          1
 Version:        0.3.5
-Release:        14%{?dist}
+Release:        15%{?dist}
 Summary:        Eclipse dependency injection framework
 # sisu is EPL-1.0, the bundled asm is BSD
 License:        EPL-1.0 AND BSD-3-Clause
@@ -22,6 +22,7 @@ Patch0:         sisu-OSGi-import-guava.patch
 Patch2:         sisu-ignored-tests.patch
 Patch3:         sisu-osgi-api.patch
 Patch4:         0001-Remove-dependency-on-glassfish-servlet-api.patch
+Patch5:         Update-bundled-ASM-bytecode-versions-up-to-Java-25.patch
 
 %if %{with bootstrap}
 BuildRequires:  javapackages-bootstrap
@@ -64,10 +65,11 @@ cp %{SOURCE100} pom.xml
 cp %{SOURCE101} sisu-inject/pom.xml
 cp %{SOURCE102} sisu-plexus/pom.xml
 
-%patch0
-%patch2
-%patch3
-%patch4 -p1
+%patch 0
+%patch 2
+%patch 3
+%patch 4 -p1
+%patch 5 -p1
 
 %pom_remove_dep :servlet-api sisu-inject
 
@@ -88,6 +90,9 @@ cp %{SOURCE102} sisu-plexus/pom.xml
 %license sisu-inject/LICENSE.txt
 
 %changelog
+* Thu Mar 19 2026 Marian Koncek <mkoncek@redhat.com> - 1:0.3.5-15
+- Update-bundled-ASM-bytecode-versions-up-to-Java-25.patch
+
 * Tue Oct 29 2024 Troy Dawson <tdawson@redhat.com> - 1:0.3.5-14
 - Bump release for October 2024 mass rebuild:
   Resolves: RHEL-64018

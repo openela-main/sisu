@@ -1,0 +1,56 @@
+From 2d8e18b56c7d3ef99b41a345d899d6c49baaf805 Mon Sep 17 00:00:00 2001
+From: Marian Koncek <mkoncek@redhat.com>
+Date: Thu, 19 Mar 2026 12:27:10 +0100
+Subject: [PATCH] Update bundled ASM bytecode versions up to Java 25
+
+---
+ .../eclipse/sisu/space/asm/ClassReader.java   |  2 +-
+ .../org/eclipse/sisu/space/asm/Opcodes.java   | 19 +++++++++++++++++--
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+
+diff --git a/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/ClassReader.java b/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/ClassReader.java
+index d1d517b..c822a7e 100644
+--- a/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/ClassReader.java
++++ b/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/ClassReader.java
+@@ -166,7 +166,7 @@ public final class ClassReader {
+     public ClassReader(final byte[] b, final int off, final int len) {
+         this.b = b;
+         // checks the class version
+-        if (readShort(off + 6) > Opcodes.V14) { // patch: relax scanning to work with Java14
++        if (readShort(off + 6) > Opcodes.V25) {
+             throw new IllegalArgumentException();
+         }
+         // parses the constant pool
+diff --git a/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/Opcodes.java b/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/Opcodes.java
+index f8f856e..278f5cc 100644
+--- a/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/Opcodes.java
++++ b/sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/asm/Opcodes.java
+@@ -58,8 +58,23 @@ public interface Opcodes {
+     int V1_6 = 0 << 16 | 50;
+     int V1_7 = 0 << 16 | 51;
+     int V1_8 = 0 << 16 | 52;
+-
+-    int V14 = 0 << 16 | 58; // patch: relax scanning to work with Java14
++    int V9 = 0 << 16 | 53;
++    int V10 = 0 << 16 | 54;
++    int V11 = 0 << 16 | 55;
++    int V12 = 0 << 16 | 56;
++    int V13 = 0 << 16 | 57;
++    int V14 = 0 << 16 | 58;
++    int V15 = 0 << 16 | 59;
++    int V16 = 0 << 16 | 60;
++    int V17 = 0 << 16 | 61;
++    int V18 = 0 << 16 | 62;
++    int V19 = 0 << 16 | 63;
++    int V20 = 0 << 16 | 64;
++    int V21 = 0 << 16 | 65;
++    int V22 = 0 << 16 | 66;
++    int V23 = 0 << 16 | 67;
++    int V24 = 0 << 16 | 68;
++    int V25 = 0 << 16 | 69;
+ 
+     // access flags
+ 
+-- 
+2.53.0
+
